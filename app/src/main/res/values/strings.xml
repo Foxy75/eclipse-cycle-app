@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eclipse</string>
+
+    <string name="flow_none">Tidak ada</string>
+    <string name="flow_spotting">Bercak</string>
+    <string name="flow_light">Ringan</string>
+    <string name="flow_medium">Sedang</string>
+    <string name="flow_heavy">Deras</string>
+
+    <string name="symptom_cramps">Kram perut</string>
+    <string name="symptom_headache">Sakit kepala</string>
+    <string name="symptom_nausea">Mual</string>
+    <string name="symptom_bloating">Kembung</string>
+    <string name="symptom_backache">Nyeri punggung</string>
+    <string name="symptom_breast">Nyeri payudara</string>
+    <string name="symptom_fatigue">Lelah</string>
+    <string name="symptom_acne">Jerawat</string>
+
+    <string name="mood_calm">Tenang</string>
+    <string name="mood_happy">Senang</string>
+    <string name="mood_neutral">Biasa saja</string>
+    <string name="mood_anxious">Cemas</string>
+    <string name="mood_irritable">Mudah tersinggung</string>
+
+    <string name="wd_mon">Sen</string>
+    <string name="wd_tue">Sel</string>
+    <string name="wd_wed">Rab</string>
+    <string name="wd_thu">Kam</string>
+    <string name="wd_fri">Jum</string>
+    <string name="wd_sat">Sab</string>
+    <string name="wd_sun">Min</string>
+
+    <string name="mon_1">Januari</string>
+    <string name="mon_2">Februari</string>
+    <string name="mon_3">Maret</string>
+    <string name="mon_4">April</string>
+    <string name="mon_5">Mei</string>
+    <string name="mon_6">Juni</string>
+    <string name="mon_7">Juli</string>
+    <string name="mon_8">Agustus</string>
+    <string name="mon_9">September</string>
+    <string name="mon_10">Oktober</string>
+    <string name="mon_11">November</string>
+    <string name="mon_12">Desember</string>
+
+    <string name="lang_system">Ikuti sistem</string>
+    <string name="lang_id">Indonesia</string>
+    <string name="lang_en">English</string>
+
+    <string name="onb_step1_title">Data siklus tetap di perangkatmu</string>
+    <string name="onb_step1_body">Eclipse berjalan 100% offline. Tidak ada akun, cloud, iklan, atau telemetri. Semua catatan terenkripsi dengan kunci yang hanya ada di HP ini.</string>
+    <string name="onb_step1_privacy">Screenshot dan pratinjau aplikasi diblokir agar aman dibuka di tempat umum.</string>
+    <string name="onb_disclaimer_title">Penting</string>
+    <string name="onb_disclaimer">Eclipse bukan alat kontrasepsi dan bukan alat medis. Prediksi siklus adalah estimasi statistik, bukan diagnosis atau klaim kesuburan.</string>
+    <string name="onb_continue">Lanjut</string>
+    <string name="onb_step2_title">Buat PIN 6 digit</string>
+    <string name="onb_step2_body">PIN melindungi akses ke aplikasi. Ia bukan bagian dari kunci enkripsi datamu.</string>
+    <string name="onb_pin_enter">Masukkan PIN</string>
+    <string name="onb_pin_confirm">Ulangi PIN</string>
+    <string name="onb_pin_mismatch">PIN tidak cocok. Coba lagi.</string>
+    <string name="onb_pin_hint">6 digit</string>
+
+    <string name="lock_title">Masukkan PIN</string>
+    <string name="lock_subtitle">Eclipse terkunci</string>
+    <string name="lock_wrong">PIN salah. %1$d percobaan tersisa.</string>
+    <string name="lock_locked_title">Terkunci sementara</string>
+    <string name="lock_locked_body">Terlalu banyak percobaan. Coba lagi setelah %1$s.</string>
+    <string name="time_days_hours">%1$d hari %2$d jam</string>
+    <string name="time_hours_mins">%1$d jam %2$d mnt</string>
+
+    <string name="nav_today">Hari Ini</string>
+    <string name="nav_calendar">Kalender</string>
+    <string name="nav_insights">Wawasan</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <string name="today_label_cycle_day">Hari siklus</string>
+    <string name="today_label_day">hari</string>
+    <string name="today_next_period">Perkiraan berikutnya dalam %1$d hari</string>
+    <string name="today_next_period_today">Perkiraan dimulai hari ini</string>
+    <string name="today_on_period">Masa aliran</string>
+    <string name="today_no_data_title">Belum ada catatan</string>
+    <string name="today_no_data_body">Catat hari pertama aliran untuk mulai melihat pola siklusmu.</string>
+    <string name="today_cta">Catat hari ini</string>
+    <string name="today_unstable">Siklus belum stabil</string>
+    <string name="today_unstable_body">Rata-rata %1$d hari · rentang %2$d–%3$d hari</string>
+    <string name="phase_menstrual">Fase awal</string>
+    <string name="phase_follicular">Fase tengah</string>
+    <string name="phase_luteal">Fase akhir</string>
+    <string name="phase_none">Tidak ada data</string>
+
+    <string name="log_title">Catat hari ini</string>
+    <string name="log_title_date">Catat · %1$s</string>
+    <string name="log_flow">Aliran</string>
+    <string name="log_symptoms">Gejala</string>
+    <string name="log_mood">Suasana hati</string>
+    <string name="log_note">Catatan (opsional)</string>
+    <string name="log_note_hint">Tulis catatan…</string>
+    <string name="log_save">Simpan</string>
+    <string name="log_delete">Hapus catatan</string>
+
+    <string name="cal_legend_fact">Tercatat</string>
+    <string name="cal_legend_prediction">Prediksi</string>
+    <string name="cal_legend_estimate">Estimasi</string>
+    <string name="cal_hint">Ketuk untuk detail · tahan untuk tandai awal aliran</string>
+
+    <string name="ins_title">Wawasan</string>
+    <string name="ins_avg_cycle">Panjang siklus</string>
+    <string name="ins_avg_period">Durasi aliran</string>
+    <string name="ins_stability">Stabilitas</string>
+    <string name="ins_stable">Stabil</string>
+    <string name="ins_unstable">Belum stabil</string>
+    <string name="ins_common_symptom">Gejala tersering</string>
+    <string name="ins_common_none">Belum ada gejala tercatat</string>
+    <string name="ins_common_count">%1$s · %2$d×</string>
+    <string name="ins_cycle_length_chart">Panjang siklus (%1$d terakhir)</string>
+    <string name="ins_cycles_logged">%1$d siklus tercatat</string>
+    <string name="ins_days_unit">%1$d hari</string>
+    <string name="ins_range_unit">%1$d–%2$d hari</string>
+    <string name="ins_no_data_title">Belum cukup data</string>
+    <string name="ins_no_data_body">Log aliran setidaknya 2 siklus untuk melihat pola.</string>
+
+    <string name="set_title">Pengaturan</string>
+    <string name="set_privacy">Privasi</string>
+    <string name="set_secure_title">Samarkan di layar Switcher</string>
+    <string name="set_secure_body">Blokir screenshot &amp; pratinjau aplikasi.</string>
+    <string name="set_language">Bahasa</string>
+    <string name="set_data">Data &amp; backup</string>
+    <string name="set_export">Ekspor backup</string>
+    <string name="set_export_body">Simpan data terenkripsi ke file .ecl dengan passphrase milikmu.</string>
+    <string name="set_import">Impor backup</string>
+    <string name="set_import_body">Pulihkan data dari file .ecl.</string>
+    <string name="set_lock_now">Kunci sekarang</string>
+    <string name="set_about">Tentang</string>
+    <string name="set_version">Versi %1$s</string>
+    <string name="set_disclaimer">Eclipse bukan alat kontrasepsi, bukan alat medis, dan tidak membuat klaim kesuburan. Prediksi hanyalah estimasi statistik.</string>
+    <string name="set_license">Lisensi GPL-3.0</string>
+
+    <string name="backup_pass_title_export">Passphrase backup</string>
+    <string name="backup_pass_title_import">Passphrase backup</string>
+    <string name="backup_pass_hint">Minimal 8 karakter</string>
+    <string name="backup_pass_confirm_hint">Ulangi passphrase</string>
+    <string name="backup_pass_short">Passphrase minimal 8 karakter.</string>
+    <string name="backup_pass_mismatch">Passphrase tidak cocok.</string>
+    <string name="backup_export_done">Backup tersimpan: %1$s</string>
+    <string name="backup_export_fail">Gagal menyimpan backup.</string>
+    <string name="backup_import_done">Data berhasil dipulihkan.</string>
+    <string name="backup_import_fail">Passphrase salah atau file rusak.</string>
+    <string name="backup_choose_file">Pilih file .ecl</string>
+
+    <string name="cancel">Batal</string>
+    <string name="ok">OK</string>
+    <string name="close">Tutup</string>
+    <string name="none_option">Tidak ada</string>
+    <string name="delete_confirm_title">Hapus catatan?</string>
+    <string name="delete_confirm_body">Catatan hari ini akan dihapus.</string>
+    <string name="delete_confirm">Hapus</string>
+
+    <string name="a11y_settings">Pengaturan</string>
+    <string name="a11y_prev_month">Bulan sebelumnya</string>
+    <string name="a11y_next_month">Bulan berikutnya</string>
+    <string name="a11y_day_detail">Detail %1$s</string>
+</resources>

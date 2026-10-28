@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_24"
+        android:paddingTop="@dimen/space_24"
+        android:paddingBottom="@dimen/space_24">
+
+        <LinearLayout
+            android:id="@+id/step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_dot_terracotta"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/space_16"
+                android:src="@drawable/ic_drop"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:gravity="center"
+                android:text="@string/onb_step1_title"
+                android:textAppearance="@style/TextAppearance.Eclipse.Title" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:gravity="center"
+                android:text="@string/onb_step1_body"
+                android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_signal_tag"
+                android:gravity="center"
+                android:padding="@dimen/space_12"
+                android:text="@string/onb_step1_privacy"
+                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:layout_marginBottom="@dimen/space_8"
+                android:text="@string/onb_disclaimer_title"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/onb_disclaimer"
+                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/space_24" />
+
+            <TextView
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cta_height"
+                android:background="@drawable/bg_cta"
+                android:gravity="center"
+                android:text="@string/onb_continue"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/step2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/onb_step2_title"
+                android:textAppearance="@style/TextAppearance.Eclipse.Title" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:gravity="center"
+                android:text="@string/onb_step2_body"
+                android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+            <LinearLayout
+                android:id="@+id/pinDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <EditText
+                android:id="@+id/pinInput"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:background="@null"
+                android:cursorVisible="false"
+                android:importantForAutofill="no"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/pinHintLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:gravity="center"
+                android:text="@string/onb_pin_enter"
+                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+            <TextView
+                android:id="@+id/pinError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:gravity="center"
+                android:textColor="@color/terracotta"
+                android:textAppearance="@style/TextAppearance.Eclipse.Caption"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/space_24" />
+
+            <TextView
+                android:id="@+id/btnFinish"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cta_height"
+                android:background="@drawable/bg_cta"
+                android:gravity="center"
+                android:text="@string/onb_continue"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

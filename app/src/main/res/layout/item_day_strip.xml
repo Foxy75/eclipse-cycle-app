@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="2dp">
+
+    <TextView
+        android:id="@+id/dayLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/outfit_medium"
+        android:textColor="@color/ink_secondary"
+        android:textSize="11sp"
+        tools:text="Sen" />
+
+    <TextView
+        android:id="@+id/dayNum"
+        android:layout_width="@dimen/day_cell"
+        android:layout_height="@dimen/day_cell"
+        android:layout_marginTop="4dp"
+        android:background="@color/transparent"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:textColor="@color/ink"
+        android:textSize="14sp"
+        tools:text="17" />
+
+    <View
+        android:id="@+id/dot"
+        android:layout_width="@dimen/dot_size"
+        android:layout_height="@dimen/dot_size"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_dot_terracotta"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+</LinearLayout>

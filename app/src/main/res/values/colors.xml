@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="canvas">#F4F4F0</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_warm">#FBFAF7</color>
+    <color name="border">#E2E1DB</color>
+    <color name="ink">#1C1917</color>
+    <color name="ink_secondary">#6B6560</color>
+    <color name="terracotta">#C84B31</color>
+    <color name="terracotta_dark">#A83C25</color>
+    <color name="teal">#0B7268</color>
+    <color name="teal_tint">#E2F0ED</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="ic_launcher_background">#F4F4F0</color>
+</resources>

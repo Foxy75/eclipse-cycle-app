@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="flow_labels">
+        <item>@string/flow_none</item>
+        <item>@string/flow_spotting</item>
+        <item>@string/flow_light</item>
+        <item>@string/flow_medium</item>
+        <item>@string/flow_heavy</item>
+    </string-array>
+
+    <string-array name="symptom_labels">
+        <item>@string/symptom_cramps</item>
+        <item>@string/symptom_headache</item>
+        <item>@string/symptom_nausea</item>
+        <item>@string/symptom_bloating</item>
+        <item>@string/symptom_backache</item>
+        <item>@string/symptom_breast</item>
+        <item>@string/symptom_fatigue</item>
+        <item>@string/symptom_acne</item>
+    </string-array>
+
+    <string-array name="mood_labels">
+        <item>@string/mood_calm</item>
+        <item>@string/mood_happy</item>
+        <item>@string/mood_neutral</item>
+        <item>@string/mood_anxious</item>
+        <item>@string/mood_irritable</item>
+    </string-array>
+
+    <string-array name="weekdays_short">
+        <item>@string/wd_mon</item>
+        <item>@string/wd_tue</item>
+        <item>@string/wd_wed</item>
+        <item>@string/wd_thu</item>
+        <item>@string/wd_fri</item>
+        <item>@string/wd_sat</item>
+        <item>@string/wd_sun</item>
+    </string-array>
+
+    <string-array name="months">
+        <item>@string/mon_1</item>
+        <item>@string/mon_2</item>
+        <item>@string/mon_3</item>
+        <item>@string/mon_4</item>
+        <item>@string/mon_5</item>
+        <item>@string/mon_6</item>
+        <item>@string/mon_7</item>
+        <item>@string/mon_8</item>
+        <item>@string/mon_9</item>
+        <item>@string/mon_10</item>
+        <item>@string/mon_11</item>
+        <item>@string/mon_12</item>
+    </string-array>
+
+    <string-array name="language_options">
+        <item>@string/lang_system</item>
+        <item>@string/lang_id</item>
+        <item>@string/lang_en</item>
+    </string-array>
+</resources>

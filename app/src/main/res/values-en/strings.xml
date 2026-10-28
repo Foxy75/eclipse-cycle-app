@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eclipse</string>
+
+    <string name="flow_none">None</string>
+    <string name="flow_spotting">Spotting</string>
+    <string name="flow_light">Light</string>
+    <string name="flow_medium">Medium</string>
+    <string name="flow_heavy">Heavy</string>
+
+    <string name="symptom_cramps">Cramps</string>
+    <string name="symptom_headache">Headache</string>
+    <string name="symptom_nausea">Nausea</string>
+    <string name="symptom_bloating">Bloating</string>
+    <string name="symptom_backache">Backache</string>
+    <string name="symptom_breast">Breast tenderness</string>
+    <string name="symptom_fatigue">Fatigue</string>
+    <string name="symptom_acne">Acne</string>
+
+    <string name="mood_calm">Calm</string>
+    <string name="mood_happy">Happy</string>
+    <string name="mood_neutral">Neutral</string>
+    <string name="mood_anxious">Anxious</string>
+    <string name="mood_irritable">Irritable</string>
+
+    <string name="wd_mon">Mon</string>
+    <string name="wd_tue">Tue</string>
+    <string name="wd_wed">Wed</string>
+    <string name="wd_thu">Thu</string>
+    <string name="wd_fri">Fri</string>
+    <string name="wd_sat">Sat</string>
+    <string name="wd_sun">Sun</string>
+
+    <string name="mon_1">January</string>
+    <string name="mon_2">February</string>
+    <string name="mon_3">March</string>
+    <string name="mon_4">April</string>
+    <string name="mon_5">May</string>
+    <string name="mon_6">June</string>
+    <string name="mon_7">July</string>
+    <string name="mon_8">August</string>
+    <string name="mon_9">September</string>
+    <string name="mon_10">October</string>
+    <string name="mon_11">November</string>
+    <string name="mon_12">December</string>
+
+    <string name="lang_system">Follow system</string>
+    <string name="lang_id">Indonesia</string>
+    <string name="lang_en">English</string>
+
+    <string name="onb_step1_title">Your cycle data stays on your device</string>
+    <string name="onb_step1_body">Eclipse runs 100% offline. No account, cloud, ads, or telemetry. Every entry is encrypted with a key that only exists on this phone.</string>
+    <string name="onb_step1_privacy">Screenshots and app previews are blocked so it is safe to open in public.</string>
+    <string name="onb_disclaimer_title">Important</string>
+    <string name="onb_disclaimer">Eclipse is not a contraceptive and not a medical device. Cycle predictions are statistical estimates, not a diagnosis or a fertility claim.</string>
+    <string name="onb_continue">Continue</string>
+    <string name="onb_step2_title">Create a 6-digit PIN</string>
+    <string name="onb_step2_body">Your PIN protects access to the app. It is not part of your data encryption key.</string>
+    <string name="onb_pin_enter">Enter PIN</string>
+    <string name="onb_pin_confirm">Repeat PIN</string>
+    <string name="onb_pin_mismatch">PINs do not match. Try again.</string>
+    <string name="onb_pin_hint">6 digits</string>
+
+    <string name="lock_title">Enter PIN</string>
+    <string name="lock_subtitle">Eclipse is locked</string>
+    <string name="lock_wrong">Wrong PIN. %1$d attempts left.</string>
+    <string name="lock_locked_title">Temporarily locked</string>
+    <string name="lock_locked_body">Too many attempts. Try again after %1$s.</string>
+    <string name="time_days_hours">%1$d days %2$d hours</string>
+    <string name="time_hours_mins">%1$d hours %2$d min</string>
+
+    <string name="nav_today">Today</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_insights">Insights</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="today_label_cycle_day">Cycle day</string>
+    <string name="today_label_day">days</string>
+    <string name="today_next_period">Next estimate in %1$d days</string>
+    <string name="today_next_period_today">Estimate starts today</string>
+    <string name="today_on_period">Flow days</string>
+    <string name="today_no_data_title">No entries yet</string>
+    <string name="today_no_data_body">Log the first day of flow to start seeing your cycle patterns.</string>
+    <string name="today_cta">Log today</string>
+    <string name="today_unstable">Cycle not stable yet</string>
+    <string name="today_unstable_body">Average %1$d days · range %2$d–%3$d days</string>
+    <string name="phase_menstrual">Early phase</string>
+    <string name="phase_follicular">Mid phase</string>
+    <string name="phase_luteal">Late phase</string>
+    <string name="phase_none">No data</string>
+
+    <string name="log_title">Log today</string>
+    <string name="log_title_date">Log · %1$s</string>
+    <string name="log_flow">Flow</string>
+    <string name="log_symptoms">Symptoms</string>
+    <string name="log_mood">Mood</string>
+    <string name="log_note">Note (optional)</string>
+    <string name="log_note_hint">Write a note…</string>
+    <string name="log_save">Save</string>
+    <string name="log_delete">Delete entry</string>
+
+    <string name="cal_legend_fact">Recorded</string>
+    <string name="cal_legend_prediction">Predicted</string>
+    <string name="cal_legend_estimate">Estimate</string>
+    <string name="cal_hint">Tap for detail · hold to mark flow start</string>
+
+    <string name="ins_title">Insights</string>
+    <string name="ins_avg_cycle">Cycle length</string>
+    <string name="ins_avg_period">Flow duration</string>
+    <string name="ins_stability">Stability</string>
+    <string name="ins_stable">Stable</string>
+    <string name="ins_unstable">Not stable</string>
+    <string name="ins_common_symptom">Most common symptom</string>
+    <string name="ins_common_none">No symptoms recorded yet</string>
+    <string name="ins_common_count">%1$s · %2$d×</string>
+    <string name="ins_cycle_length_chart">Cycle length (last %1$d)</string>
+    <string name="ins_cycles_logged">%1$d cycles recorded</string>
+    <string name="ins_days_unit">%1$d days</string>
+    <string name="ins_range_unit">%1$d–%2$d days</string>
+    <string name="ins_no_data_title">Not enough data</string>
+    <string name="ins_no_data_body">Log flow for at least 2 cycles to see patterns.</string>
+
+    <string name="set_title">Settings</string>
+    <string name="set_privacy">Privacy</string>
+    <string name="set_secure_title">Hide from the app switcher</string>
+    <string name="set_secure_body">Block screenshots &amp; app previews.</string>
+    <string name="set_language">Language</string>
+    <string name="set_data">Data &amp; backup</string>
+    <string name="set_export">Export backup</string>
+    <string name="set_export_body">Save encrypted data to an .ecl file with your passphrase.</string>
+    <string name="set_import">Import backup</string>
+    <string name="set_import_body">Restore data from an .ecl file.</string>
+    <string name="set_lock_now">Lock now</string>
+    <string name="set_about">About</string>
+    <string name="set_version">Version %1$s</string>
+    <string name="set_disclaimer">Eclipse is not a contraceptive, not a medical device, and makes no fertility claim. Predictions are statistical estimates only.</string>
+    <string name="set_license">GPL-3.0 license</string>
+
+    <string name="backup_pass_title_export">Backup passphrase</string>
+    <string name="backup_pass_title_import">Backup passphrase</string>
+    <string name="backup_pass_hint">At least 8 characters</string>
+    <string name="backup_pass_confirm_hint">Repeat passphrase</string>
+    <string name="backup_pass_short">Passphrase must be at least 8 characters.</string>
+    <string name="backup_pass_mismatch">Passphrases do not match.</string>
+    <string name="backup_export_done">Backup saved: %1$s</string>
+    <string name="backup_export_fail">Failed to save backup.</string>
+    <string name="backup_import_done">Data restored successfully.</string>
+    <string name="backup_import_fail">Wrong passphrase or corrupted file.</string>
+    <string name="backup_choose_file">Choose an .ecl file</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="close">Close</string>
+    <string name="none_option">None</string>
+    <string name="delete_confirm_title">Delete entry?</string>
+    <string name="delete_confirm_body">This day’s entry will be removed.</string>
+    <string name="delete_confirm">Delete</string>
+
+    <string name="a11y_settings">Settings</string>
+    <string name="a11y_prev_month">Previous month</string>
+    <string name="a11y_next_month">Next month</string>
+    <string name="a11y_day_detail">Detail %1$s</string>
+</resources>

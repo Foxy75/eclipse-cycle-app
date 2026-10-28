@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/set_title"
+            android:textAppearance="@style/TextAppearance.Eclipse.Title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:background="@drawable/bg_metric_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_secure_title"
+                    android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:text="@string/set_secure_body"
+                    android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/secureSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_16"
+                app:thumbTint="@color/terracotta"
+                app:trackTint="@color/border" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:text="@string/set_language"
+            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/langGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:chipSpacingHorizontal="@dimen/space_8"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLangSystem"
+                style="@style/Widget.Eclipse.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/lang_system" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLangId"
+                style="@style/Widget.Eclipse.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lang_id" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLangEn"
+                style="@style/Widget.Eclipse.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lang_en" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:text="@string/set_data"
+            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+        <TextView
+            android:id="@+id/btnExport"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cta_height"
+            android:layout_marginTop="@dimen/space_8"
+            android:background="@drawable/bg_icon_button"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/space_16"
+            android:text="@string/set_export"
+            android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+        <TextView
+            android:id="@+id/btnImport"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cta_height"
+            android:layout_marginTop="@dimen/space_12"
+            android:background="@drawable/bg_icon_button"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/space_16"
+            android:text="@string/set_import"
+            android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+        <TextView
+            android:id="@+id/btnLockNow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cta_height"
+            android:layout_marginTop="@dimen/space_24"
+            android:background="@drawable/bg_cta"
+            android:gravity="center"
+            android:text="@string/set_lock_now"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+
+        <TextView
+            android:id="@+id/tvDisclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:text="@string/set_disclaimer"
+            android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:layout_marginBottom="@dimen/space_24"
+            android:text="@string/set_license"
+            android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

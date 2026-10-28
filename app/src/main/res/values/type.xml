@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Eclipse.Display" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/outfit_semibold</item>
+        <item name="android:fontFamily">@font/outfit_semibold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Eclipse.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/outfit_semibold</item>
+        <item name="android:fontFamily">@font/outfit_semibold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Eclipse.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/outfit_regular</item>
+        <item name="android:fontFamily">@font/outfit_regular</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Eclipse.Label" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/outfit_medium</item>
+        <item name="android:fontFamily">@font/outfit_medium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/ink_secondary</item>
+    </style>
+
+    <style name="TextAppearance.Eclipse.Caption" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/outfit_medium</item>
+        <item name="android:fontFamily">@font/outfit_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/ink_secondary</item>
+    </style>
+
+    <style name="TextAppearance.Eclipse.Metric" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Eclipse.Date" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ink_secondary</item>
+    </style>
+</resources>
