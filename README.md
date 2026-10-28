@@ -53,6 +53,21 @@ impor backup).
 
 Detail: `design/THREAT-MODEL.md` (lokal, tidak di-commit ke repo publik).
 
+## Rilis & distribusi
+
+1. Buat keystore lokal (jangan di-commit):
+   `keytool -genkeypair -v -keystore eclipse-release.jks -alias eclipse -keyalg RSA -keysize 4096 -validity 10000`
+2. Bangun rilis: `./gradlew --offline assembleRelease`
+3. APK mentah: `app/build/outputs/apk/release/app-release-unsigned.apk`
+4. Tandatangani dengan `apksigner` (atau konfigurasikan `signingConfig` di `app/build.gradle.kts`
+   menggunakan keystore lokal) sebelum didistribusikan lewat GitHub Releases.
+
+## CI
+
+`.github/workflows/ci.yml` menjalankan `testDebugUnitTest` + `assembleDebug` di GitHub Actions.
+CI membutuhkan network untuk mengunduh dependency; build `--offline` hanya untuk mesin lokal
+yang cache-nya sudah lengkap.
+
 ## Lisensi
 
 GPL-3.0 — lihat `LICENSE`.
