@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:layout_width="@dimen/day_cell_w"
+    android:layout_height="@dimen/day_cell_h"
+    android:layout_marginEnd="@dimen/space_8"
+    android:background="@drawable/bg_day_item"
+    android:gravity="center"
     android:orientation="vertical"
-    android:paddingHorizontal="2dp">
+    android:paddingVertical="@dimen/space_6">
 
     <TextView
         android:id="@+id/dayLetter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/outfit_medium"
-        android:textColor="@color/ink_secondary"
-        android:textSize="11sp"
+        android:textAppearance="@style/TextAppearance.Eclipse.DayLabel"
         tools:text="Sen" />
 
     <TextView
         android:id="@+id/dayNum"
-        android:layout_width="@dimen/day_cell"
-        android:layout_height="@dimen/day_cell"
-        android:layout_marginTop="4dp"
-        android:background="@color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:fontFamily="monospace"
-        android:gravity="center"
+        android:fontFeatureSettings="tnum"
         android:textColor="@color/ink"
         android:textSize="14sp"
-        tools:text="17" />
+        android:textStyle="bold"
+        tools:text="03" />
 
     <View
         android:id="@+id/dot"
         android:layout_width="@dimen/dot_size"
         android:layout_height="@dimen/dot_size"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:background="@drawable/bg_dot_terracotta"
         android:visibility="invisible"
         tools:visibility="visible" />

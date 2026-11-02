@@ -5,10 +5,10 @@ data class Cycle(val start: Long, val end: Long) {
     val periodLength: Int get() = (end - start).toInt() + 1
 }
 
-/** Groups recorded flow days into cycles. */
+/** Groups recorded flow days into period episodes conforming to FIGO standards. */
 object CycleBuilder {
-    /** A new cycle starts after at least this many flow-free days. */
-    const val GAP_DAYS = 10L
+    /** A new menstrual period starts after at least this many bleeding-free days. */
+    const val GAP_DAYS = 12L
 
     fun build(flowDays: Collection<Long>): List<Cycle> {
         val sorted = flowDays.distinct().sorted()

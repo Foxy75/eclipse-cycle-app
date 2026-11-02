@@ -2,12 +2,12 @@
     android:width="24dp" android:height="24dp"
     android:viewportWidth="24" android:viewportHeight="24">
     <path
-        android:strokeColor="#1C1917"
+        android:strokeColor="@color/ink"
         android:strokeWidth="1.5"
         android:strokeLineCap="round"
         android:pathData="M12,5 L12,19" />
     <path
-        android:strokeColor="#1C1917"
+        android:strokeColor="@color/ink"
         android:strokeWidth="1.5"
         android:strokeLineCap="round"
         android:pathData="M5,12 L19,12" />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.Eclipse" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/terracotta</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/terracotta_tint</item>
+        <item name="colorOnPrimaryContainer">@color/terracotta</item>
+        <item name="colorSecondary">@color/teal</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/teal_tint</item>
+        <item name="colorOnSecondaryContainer">@color/teal</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/ink</item>
+        <item name="colorSurfaceVariant">@color/canvas</item>
+        <item name="colorOnSurfaceVariant">@color/ink_secondary</item>
+        <item name="colorOutline">@color/border</item>
+        <item name="android:colorBackground">@color/canvas</item>
+        <item name="android:fontFamily">@font/outfit_regular</item>
+        <item name="android:windowBackground">@color/canvas</item>
+        <item name="android:statusBarColor">@color/canvas</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="Theme.Eclipse" parent="Base.Theme.Eclipse" />
+</resources>

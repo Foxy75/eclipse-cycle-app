@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="space_2">2dp</dimen>
     <dimen name="space_4">4dp</dimen>
+    <dimen name="space_6">6dp</dimen>
     <dimen name="space_8">8dp</dimen>
+    <dimen name="space_10">10dp</dimen>
     <dimen name="space_12">12dp</dimen>
+    <dimen name="space_14">14dp</dimen>
     <dimen name="space_16">16dp</dimen>
+    <dimen name="space_18">18dp</dimen>
+    <dimen name="space_20">20dp</dimen>
     <dimen name="space_24">24dp</dimen>
-    <dimen name="radius_hero">28dp</dimen>
+    <dimen name="space_28">28dp</dimen>
+
+    <dimen name="radius_hero">24dp</dimen>
     <dimen name="radius_card">20dp</dimen>
-    <dimen name="radius_pill">12dp</dimen>
+    <dimen name="radius_banner">16dp</dimen>
+    <dimen name="radius_pill">14dp</dimen>
+    <dimen name="radius_inner">12dp</dimen>
+    <dimen name="radius_cell">10dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
+
     <dimen name="touch_target">48dp</dimen>
-    <dimen name="icon_button">48dp</dimen>
-    <dimen name="icon_size">24dp</dimen>
-    <dimen name="day_cell">44dp</dimen>
+    <dimen name="icon_button">40dp</dimen>
+    <dimen name="icon_button_sm">36dp</dimen>
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">18dp</dimen>
+    <dimen name="icon_lg">24dp</dimen>
+
     <dimen name="cta_height">52dp</dimen>
+    <dimen name="btn_height">46dp</dimen>
     <dimen name="dot_size">4dp</dimen>
+    <dimen name="dot_8">8dp</dimen>
     <dimen name="pin_dot">14dp</dimen>
+
+    <dimen name="day_cell_w">44dp</dimen>
+    <dimen name="day_cell_h">64dp</dimen>
+    <dimen name="numpad_key">68dp</dimen>
+    <dimen name="numpad_gap_h">24dp</dimen>
+    <dimen name="numpad_gap_v">16dp</dimen>
+    <dimen name="fab_size">52dp</dimen>
+    <dimen name="fab_radius">16dp</dimen>
+    <dimen name="topbar_height">56dp</dimen>
+    <dimen name="bottom_nav_height">64dp</dimen>
 </resources>

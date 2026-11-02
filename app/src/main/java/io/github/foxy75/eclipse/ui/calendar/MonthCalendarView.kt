@@ -8,10 +8,13 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
 import io.github.foxy75.eclipse.R
 import io.github.foxy75.eclipse.core.Dates
+import java.util.Locale
 
 /** Month data the calendar needs to render one month. */
 data class CalendarData(
@@ -20,7 +23,8 @@ data class CalendarData(
     val factDays: Set<Long>,
     val predictedDays: Set<Long>,
     val estimateDay: Long?,
-    val today: Long
+    val today: Long,
+    val selectedDay: Long = today
 )
 
 /**
@@ -40,12 +44,15 @@ class MonthCalendarView @JvmOverloads constructor(
     private val density = resources.displayMetrics.density
 
     private val fillFact = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val circleToday = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val circlePrediction = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val fillPredicted = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val strokePredicted = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val ringSelected = Paint(Paint.ANTI_ALIAS_FLAG)
     private val dotEstimate = Paint(Paint.ANTI_ALIAS_FLAG)
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val headerPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val bounds = RectF()
+
+    private val cellBox = RectF()
+    private val outerRingBox = RectF()
 
     private val weekdays: Array<String>
     private var cellHeightPx: Float = 0f
@@ -57,52 +64,60 @@ class MonthCalendarView @JvmOverloads constructor(
 
     private var colorInk = 0
     private var colorInkSecondary = 0
-    private var colorTint = 0
     private var colorTerracotta = 0
     private var colorTeal = 0
+    private var colorPredictedBg = 0
 
     init {
         val t = resources.obtainTypedArray(R.array.weekdays_short)
         weekdays = Array(t.length()) { t.getString(it) ?: "" }
         t.recycle()
 
-        val monospace = Typeface.create("monospace", Typeface.BOLD)
-        colorInk = color(R.color.ink)
-        colorInkSecondary = color(R.color.ink_secondary)
-        colorTint = color(R.color.teal_tint)
-        colorTerracotta = color(R.color.terracotta)
-        colorTeal = color(R.color.teal)
+        colorInk = ContextCompat.getColor(context, R.color.ink)
+        colorInkSecondary = ContextCompat.getColor(context, R.color.ink_secondary)
+
+        val tv = TypedValue()
+        val theme = context.theme
+
+        theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimary, tv, true)
+        colorTerracotta = if (tv.data != 0) tv.data else ContextCompat.getColor(context, R.color.terracotta)
+
+        theme.resolveAttribute(com.google.android.material.R.attr.colorSecondary, tv, true)
+        colorTeal = if (tv.data != 0) tv.data else ContextCompat.getColor(context, R.color.teal)
+
+        colorPredictedBg = ContextCompat.getColor(context, R.color.pred_cell_bg)
 
         fillFact.style = Paint.Style.FILL
         fillFact.color = colorTerracotta
 
-        circleToday.style = Paint.Style.STROKE
-        circleToday.strokeWidth = 1.5f * density
-        circleToday.color = colorInk
+        fillPredicted.style = Paint.Style.FILL
+        fillPredicted.color = colorPredictedBg
 
-        circlePrediction.style = Paint.Style.STROKE
-        circlePrediction.strokeWidth = 1.5f * density
-        circlePrediction.color = colorTeal
-        circlePrediction.pathEffect = DashPathEffect(floatArrayOf(6f * density, 5f * density), 0f)
+        strokePredicted.style = Paint.Style.STROKE
+        strokePredicted.strokeWidth = 1.2f * density
+        strokePredicted.color = colorTerracotta
+        strokePredicted.pathEffect = DashPathEffect(floatArrayOf(4f * density, 3f * density), 0f)
+
+        ringSelected.style = Paint.Style.STROKE
+        ringSelected.strokeWidth = 1.5f * density
+        ringSelected.color = colorInk
 
         dotEstimate.style = Paint.Style.FILL
         dotEstimate.color = colorTeal
 
-        textPaint.color = colorInk
+        val monospace = Typeface.create("monospace", Typeface.BOLD)
         textPaint.typeface = monospace
         textPaint.textAlign = Paint.Align.CENTER
-        textPaint.textSize = 14f * density
+        textPaint.textSize = 13f * density
 
         headerPaint.color = colorInkSecondary
         headerPaint.textAlign = Paint.Align.CENTER
-        headerPaint.textSize = 12f * density
+        headerPaint.textSize = 11f * density
         headerPaint.typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
 
-        cellHeightPx = 46f * density
-        headerHeightPx = 30f * density
+        cellHeightPx = 48f * density
+        headerHeightPx = 28f * density
     }
-
-    private fun color(id: Int): Int = resources.getColor(id, null)
 
     fun setData(data: CalendarData) {
         this.data = data
@@ -141,10 +156,16 @@ class MonthCalendarView @JvmOverloads constructor(
         val cellW = width / 7f
         val top = paddingTop + headerHeightPx
 
+        // Draw weekday headers
         for (c in 0 until 7) {
             val x = c * cellW + cellW / 2f
             canvas.drawText(weekdays[c], x, headerHeightPx - 6f * density, headerPaint)
         }
+
+        val boxHalf = minOf(cellW * 0.44f, 19f * density)
+        val boxRadius = 10f * density
+        val outerRadius = 12f * density
+        val outerInset = 2f * density
 
         for (r in 0 until rows) {
             for (c in 0 until 7) {
@@ -153,30 +174,52 @@ class MonthCalendarView @JvmOverloads constructor(
                 val day = firstOfMonth + dayIndex
                 val cellCX = c * cellW + cellW / 2f
                 val cellCY = top + r * cellHeightPx + cellHeightPx / 2f
-                val radius = cellW * 0.33f
 
                 val isFact = d.factDays.contains(day)
                 val isPredicted = d.predictedDays.contains(day)
-                val isToday = day == d.today
+                val isSelected = day == d.selectedDay
                 val isEstimate = d.estimateDay == day
 
-                if (isPredicted) {
-                    bounds.set(cellCX - radius, cellCY - radius, cellCX + radius, cellCY + radius)
-                    canvas.drawRoundRect(bounds, radius, radius, circlePrediction)
-                }
+                cellBox.set(
+                    cellCX - boxHalf,
+                    cellCY - boxHalf,
+                    cellCX + boxHalf,
+                    cellCY + boxHalf
+                )
 
+                // 1. Draw cell background / border
                 if (isFact) {
-                    canvas.drawCircle(cellCX, cellCY, radius, fillFact)
-                } else if (isToday) {
-                    canvas.drawCircle(cellCX, cellCY, radius, circleToday)
+                    canvas.drawRoundRect(cellBox, boxRadius, boxRadius, fillFact)
+                } else if (isPredicted) {
+                    canvas.drawRoundRect(cellBox, boxRadius, boxRadius, fillPredicted)
+                    canvas.drawRoundRect(cellBox, boxRadius, boxRadius, strokePredicted)
                 }
 
-                textPaint.color = if (isFact) Color.WHITE else colorInk
-                val baseline = cellCY - (textPaint.ascent() + textPaint.descent()) / 2f
-                canvas.drawText((dayIndex + 1).toString(), cellCX, baseline, textPaint)
+                // 2. Draw outer ring for selected day
+                if (isSelected) {
+                    outerRingBox.set(
+                        cellBox.left - outerInset,
+                        cellBox.top - outerInset,
+                        cellBox.right + outerInset,
+                        cellBox.bottom + outerInset
+                    )
+                    canvas.drawRoundRect(outerRingBox, outerRadius, outerRadius, ringSelected)
+                }
 
+                // 3. Draw day number text (2 digits: "01".."31")
+                textPaint.color = when {
+                    isFact -> Color.WHITE
+                    isPredicted -> colorTerracotta
+                    else -> colorInk
+                }
+                val numText = String.format(Locale.US, "%02d", dayIndex + 1)
+                val baseline = cellCY - (textPaint.ascent() + textPaint.descent()) / 2f - (if (isEstimate && !isFact) 2f * density else 0f)
+                canvas.drawText(numText, cellCX, baseline, textPaint)
+
+                // 4. Draw estimate teal dot below number
                 if (isEstimate && !isFact) {
-                    canvas.drawCircle(cellCX, cellCY + radius + 5f * density, 2.5f * density, dotEstimate)
+                    val dotY = cellCY + boxHalf - 4.5f * density
+                    canvas.drawCircle(cellCX, dotY, 2f * density, dotEstimate)
                 }
             }
         }
@@ -194,7 +237,7 @@ class MonthCalendarView @JvmOverloads constructor(
                 val c = (event.x / cellW).toInt().coerceIn(0, 6)
                 val r = ((event.y - top) / cellHeightPx).toInt()
                 val dayIndex = r * 7 + c - leadingEmpty
-                if (dayIndex >= 0 && dayIndex < daysInMonth) {
+                if (dayIndex in 0 until daysInMonth) {
                     tapDay = firstOfMonth + dayIndex
                     tapX = event.x
                     tapY = event.y

@@ -1,251 +1,636 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/sheetContentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="@dimen/space_16"
-        android:paddingTop="@dimen/space_16"
-        android:paddingBottom="@dimen/space_24">
+        android:paddingHorizontal="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="24dp">
 
+        <!-- Drag Handle -->
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_drag_handle" />
+
+        <!-- Header: Kicker + Date on left, Close button on right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/logKicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/log_kicker"
+                    android:textAppearance="@style/TextAppearance.Eclipse.KickerSans" />
+
+                <TextView
+                    android:id="@+id/logDateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="monospace"
+                    android:fontFeatureSettings="tnum"
+                    android:textColor="@color/ink"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Rabu, 03 Okt 2026" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_icon_button_sm"
+                android:contentDescription="@string/close"
+                android:padding="10dp"
+                android:src="@drawable/ic_close"
+                app:tint="@color/ink" />
+        </LinearLayout>
+
+        <!-- ================= BAGIAN 1: ALIRAN ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/log_flow"
+                android:textAppearance="@style/TextAppearance.Eclipse.CardTitle"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_single"
+                android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/flowContainer"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/btnFlowSpotting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/flow_spotting"
+                android:textColor="@color/sel_option_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnFlowLight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/flow_light"
+                android:textColor="@color/sel_option_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnFlowMedium"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/flow_medium"
+                android:textColor="@color/sel_option_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnFlowHeavy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/flow_heavy"
+                android:textColor="@color/sel_option_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/outfit_medium" />
+        </LinearLayout>
+
+        <!-- ================= BAGIAN 2: GEJALA ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/log_symptoms"
+                android:textAppearance="@style/TextAppearance.Eclipse.CardTitle"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvSymptomsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Eclipse.KickerMono"
+                tools:text="Multi-pilih (0 dipilih)" />
+        </LinearLayout>
+
+        <!-- 8 Gejala: 4 Baris x 2 Kolom -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <!-- Baris 1: Kram, Sakit Kepala -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom0"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_bolt"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_kram"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom1"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_headache"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Baris 2: Nyeri Punggung, Kembung -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom2"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_spine"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_backache"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom3"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_bloating"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_bloating"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Baris 3: Lelah, Jerawat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom4"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_battery_low"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_fatigue"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom5"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_sparkles"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_acne"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Baris 4: Mual, Ngidam -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom6"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_nausea"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_nausea"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itemSymptom7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_symptom_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconSymptom7"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_smile"
+                        app:tint="@color/sel_symptom_icon_tint" />
+
+                    <TextView
+                        android:id="@+id/textSymptom7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/symptom_craving"
+                        android:textColor="@color/sel_option_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ================= BAGIAN 3: MOOD ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/log_mood"
+                android:textAppearance="@style/TextAppearance.Eclipse.CardTitle"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_single"
+                android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/moodContainer"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/btnMood0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="2dp"
+                android:text="@string/mood_very_bad"
+                android:textColor="@color/sel_option_text"
+                android:textSize="11sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnMood1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="2dp"
+                android:text="@string/mood_bad"
+                android:textColor="@color/sel_option_text"
+                android:textSize="11.5sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnMood2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="2dp"
+                android:text="@string/mood_neutral"
+                android:textColor="@color/sel_option_text"
+                android:textSize="11.5sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnMood3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="2dp"
+                android:text="@string/mood_good"
+                android:textColor="@color/sel_option_text"
+                android:textSize="11.5sp"
+                android:fontFamily="@font/outfit_medium" />
+
+            <TextView
+                android:id="@+id/btnMood4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/sel_option_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="2dp"
+                android:text="@string/mood_very_good"
+                android:textColor="@color/sel_option_text"
+                android:textSize="11sp"
+                android:fontFamily="@font/outfit_medium" />
+        </LinearLayout>
+
+        <!-- ================= BAGIAN 4: CATATAN ================= -->
         <TextView
-            android:id="@+id/logTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/log_title"
-            android:textAppearance="@style/TextAppearance.Eclipse.Title" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_16"
-            android:text="@string/log_flow"
-            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/flowGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_8"
-            app:chipSpacingHorizontal="@dimen/space_8"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFlow0"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/flow_none" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFlow1"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flow_spotting" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFlow2"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flow_light" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFlow3"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flow_medium" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFlow4"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flow_heavy" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_16"
-            android:text="@string/log_symptoms"
-            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/symptomGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_8"
-            app:chipSpacingHorizontal="@dimen/space_8"
-            app:chipSpacingVertical="@dimen/space_8">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom0"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_cramps" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom1"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_headache" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom2"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_nausea" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom3"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_bloating" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom4"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_backache" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom5"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_breast" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom6"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_fatigue" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSymptom7"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/symptom_acne" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_16"
-            android:text="@string/log_mood"
-            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/moodGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_8"
-            app:chipSpacingHorizontal="@dimen/space_8"
-            app:chipSpacingVertical="@dimen/space_8"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMood0"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mood_calm" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMood1"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mood_happy" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMood2"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mood_neutral" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMood3"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mood_anxious" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMood4"
-                style="@style/Widget.Eclipse.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mood_irritable" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_16"
+            android:layout_marginTop="18dp"
             android:text="@string/log_note"
-            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+            android:textAppearance="@style/TextAppearance.Eclipse.CardTitle"
+            android:textSize="13sp" />
 
         <EditText
             android:id="@+id/noteInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_8"
+            android:layout_height="84dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_field"
-            android:gravity="top"
+            android:gravity="top|start"
             android:hint="@string/log_note_hint"
+            android:importantForAutofill="no"
             android:inputType="textMultiLine|textCapSentences"
             android:maxLength="200"
-            android:minLines="3"
-            android:padding="@dimen/space_16"
-            android:textAppearance="@style/TextAppearance.Eclipse.Body"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.Eclipse.BodySm"
+            android:textColor="@color/ink"
             android:textColorHint="@color/ink_secondary" />
 
-        <LinearLayout
+        <!-- ================= TOMBOL SIMPAN & HAPUS ================= -->
+        <TextView
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_24"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_cta"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/log_save"
+            android:textAppearance="@style/TextAppearance.Eclipse.Button"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/cta_height"
-                android:background="@drawable/bg_cta"
-                android:gravity="center"
-                android:text="@string/log_save"
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+        <TextView
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/log_delete"
+            android:textColor="@color/terracotta"
+            android:textSize="14sp"
+            android:fontFamily="@font/outfit_medium"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/btnDelete"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/cta_height"
-                android:layout_marginTop="@dimen/space_8"
-                android:background="@drawable/bg_icon_button"
-                android:gravity="center"
-                android:text="@string/log_delete"
-                android:textColor="@color/terracotta"
-                android:textAppearance="@style/TextAppearance.Eclipse.Label"
-                android:visibility="gone" />
-        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

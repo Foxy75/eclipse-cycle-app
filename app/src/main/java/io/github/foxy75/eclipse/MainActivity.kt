@@ -2,9 +2,12 @@ package io.github.foxy75.eclipse
 
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import io.github.foxy75.eclipse.data.PersonalizePreferences
 import io.github.foxy75.eclipse.data.Repository
 import io.github.foxy75.eclipse.databinding.ActivityMainBinding
 import io.github.foxy75.eclipse.ui.home.HomeFragment
@@ -19,7 +22,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var repo: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        PersonalizePreferences.applyNightMode(this)
+        val themeRes = PersonalizePreferences.getThemeRes(this)
+        setTheme(themeRes)
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        val isNight = PersonalizePreferences.isNight(this)
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !isNight
+            isAppearanceLightNavigationBars = !isNight
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         repo = Repository.get(this)

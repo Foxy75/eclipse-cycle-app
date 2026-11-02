@@ -10,28 +10,61 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/homeTopBar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/topbar_height"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/space_16">
+            android:paddingHorizontal="@dimen/space_16"
+            android:paddingVertical="@dimen/space_8">
+
+            <View
+                android:layout_width="@dimen/dot_8"
+                android:layout_height="@dimen/dot_8"
+                android:background="@drawable/bg_dot_terracotta" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_8"
                 android:layout_weight="1"
-                android:text="@string/app_name"
-                android:textAppearance="@style/TextAppearance.Eclipse.Title" />
+                android:text="@string/topbar_today"
+                android:textColor="@color/ink"
+                android:textSize="18sp"
+                android:fontFamily="@font/outfit_semibold" />
+
+            <ImageButton
+                android:id="@+id/btnThemeMode"
+                android:layout_width="@dimen/icon_button"
+                android:layout_height="@dimen/icon_button"
+                android:background="@drawable/bg_icon_button"
+                android:contentDescription="@string/theme_mode"
+                android:padding="10dp"
+                android:src="@drawable/ic_sun"
+                app:tint="@color/ink" />
 
             <ImageButton
                 android:id="@+id/btnSettings"
                 android:layout_width="@dimen/icon_button"
                 android:layout_height="@dimen/icon_button"
+                android:layout_marginStart="@dimen/space_8"
                 android:background="@drawable/bg_icon_button"
                 android:contentDescription="@string/a11y_settings"
-                android:padding="12dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_sliders"
                 app:tint="@color/ink" />
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="@dimen/space_8"
+                android:background="@drawable/bg_avatar"
+                android:contentDescription="@string/app_name"
+                android:padding="8dp"
+                android:src="@drawable/ic_user_outline"
+                app:tint="@color/white" />
         </LinearLayout>
 
         <FrameLayout
@@ -49,23 +82,28 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/bottom_nav_height"
             android:background="@color/surface"
             app:elevation="0dp"
             app:itemIconTint="@color/nav_item_tint"
             app:itemTextColor="@color/nav_item_tint"
             app:itemRippleColor="@color/teal_tint"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/space_16"
-        android:layout_marginBottom="80dp"
-        android:contentDescription="@string/log_title"
-        android:src="@drawable/ic_plus"
-        app:backgroundTint="@color/terracotta"
+        android:layout_marginEnd="@dimen/space_16"
+        android:contentDescription="@string/log_kicker"
+        android:src="@drawable/ic_calendar_edit"
+        app:fabCustomSize="56dp"
+        app:maxImageSize="24dp"
+        app:elevation="4dp"
+        app:backgroundTint="?attr/colorPrimary"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Eclipse.Fab"
         app:tint="@color/white" />
 </FrameLayout>

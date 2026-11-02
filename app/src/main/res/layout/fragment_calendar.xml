@@ -1,122 +1,347 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/space_16">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/icon_button"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btnPrev"
-            android:layout_width="@dimen/icon_button"
-            android:layout_height="@dimen/icon_button"
-            android:background="@drawable/bg_icon_button"
-            android:contentDescription="@string/a11y_prev_month"
-            android:padding="12dp"
-            android:src="@drawable/ic_chevron_left"
-            app:tint="@color/ink" />
-
-        <TextView
-            android:id="@+id/monthTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.Eclipse.Title" />
-
-        <ImageButton
-            android:id="@+id/btnNext"
-            android:layout_width="@dimen/icon_button"
-            android:layout_height="@dimen/icon_button"
-            android:background="@drawable/bg_icon_button"
-            android:contentDescription="@string/a11y_next_month"
-            android:padding="12dp"
-            android:src="@drawable/ic_chevron_right"
-            app:tint="@color/ink" />
-    </LinearLayout>
-
-    <io.github.foxy75.eclipse.ui.calendar.MonthCalendarView
-        android:id="@+id/monthCalendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_8" />
+    android:background="@color/canvas"
+    android:clipToPadding="false"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_16"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_16"
+        android:paddingTop="@dimen/space_8"
+        android:paddingBottom="@dimen/space_24">
 
+        <!-- ================= KARTU KALENDER UTAMA ================= -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:background="@drawable/bg_card_24"
+            android:orientation="vertical"
+            android:padding="@dimen/space_18">
 
-            <View
-                android:layout_width="@dimen/dot_size"
-                android:layout_height="@dimen/dot_size"
-                android:background="@drawable/bg_dot_terracotta" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Header Kalender: Kicker + Judul Bulan di kiri, Tombol < dan > di kanan -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="@string/cal_legend_fact"
-                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cal_kicker"
+                        android:textAppearance="@style/TextAppearance.Eclipse.KickerSans" />
+
+                    <TextView
+                        android:id="@+id/monthTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textAppearance="@style/TextAppearance.Eclipse.ScreenTitle"
+                        tools:text="Oktober 2026" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnPrev"
+                    android:layout_width="@dimen/icon_button_sm"
+                    android:layout_height="@dimen/icon_button_sm"
+                    android:background="@drawable/bg_icon_button_sm"
+                    android:contentDescription="@string/a11y_prev_month"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_chevron_left"
+                    app:tint="@color/ink" />
+
+                <ImageButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="@dimen/icon_button_sm"
+                    android:layout_height="@dimen/icon_button_sm"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:background="@drawable/bg_icon_button_sm"
+                    android:contentDescription="@string/a11y_next_month"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/ink" />
+            </LinearLayout>
+
+            <!-- Baris Legenda 3 Penanda -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/dot_8"
+                        android:layout_height="@dimen/dot_8"
+                        android:background="@drawable/bg_dot_terracotta" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/cal_legend_fact"
+                        android:textColor="@color/ink"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/dot_8"
+                        android:layout_height="@dimen/dot_8"
+                        android:background="@drawable/bg_dot_dashed_terracotta" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/cal_legend_prediction"
+                        android:textColor="@color/ink"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/dot_8"
+                        android:layout_height="@dimen/dot_8"
+                        android:background="@drawable/bg_dot_teal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/cal_legend_estimate"
+                        android:textColor="@color/ink"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Custom 7-Column Canvas Grid View -->
+            <io.github.foxy75.eclipse.ui.calendar.MonthCalendarView
+                android:id="@+id/monthCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp" />
+
         </LinearLayout>
 
+        <!-- ================= KARTU DETAIL HARI TERPILIH ================= -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_16"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/space_12"
+            android:background="@drawable/bg_card_20"
+            android:orientation="vertical"
+            android:padding="@dimen/space_16">
 
-            <View
-                android:layout_width="@dimen/dot_size"
-                android:layout_height="@dimen/dot_size"
-                android:background="@drawable/bg_dot_teal" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="@string/cal_legend_prediction"
-                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dot_8"
+                    android:layout_height="@dimen/dot_8"
+                    android:background="@drawable/bg_dot_terracotta" />
+
+                <TextView
+                    android:id="@+id/tvDetailDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.Eclipse.ChipLabel"
+                    tools:text="Hari ini · 03 Okt 2026" />
+
+                <TextView
+                    android:id="@+id/tvDetailCycleDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm"
+                    tools:text="Hari ke-3 ritme" />
+            </LinearLayout>
+
+            <!-- Chip Ringkasan Catatan -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/containerDetailChips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <!-- Baris Footer Kartu Detail -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_14"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnOpenFullLog"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/cal_open_full"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cal_synced"
+                    android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+            </LinearLayout>
         </LinearLayout>
 
+        <!-- ================= 2 KARTU METRIK BAWAH ================= -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_16"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/space_12"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <View
-                android:layout_width="@dimen/dot_size"
-                android:layout_height="@dimen/dot_size"
-                android:background="@drawable/bg_pin_dot" />
+            <!-- Kartu Metrik Kiri: Siklus Rata-rata -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_20"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/metric_avg_cycle"
+                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvAvgCycleValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Eclipse.MetricValueMd"
+                        tools:text="28" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/onb_unit_days"
+                        android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAvgVariationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/TextAppearance.Eclipse.Caption"
+                    tools:text="Variasi ±1.2 hari" />
+            </LinearLayout>
+
+            <!-- Kartu Metrik Kanan: Fase Berikutnya -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="@string/cal_legend_estimate"
-                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_20"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cal_metric_next"
+                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvNextPhaseValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Eclipse.MetricValueMd"
+                        tools:text="25" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/today_label_day"
+                        android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvProspectStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/cal_prospect"
+                    android:textColor="@color/teal"
+                    android:textSize="11sp" />
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_12"
-        android:text="@string/cal_hint"
-        android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

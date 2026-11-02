@@ -3,10 +3,12 @@
     <style name="Base.Theme.Eclipse" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/terracotta</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/teal_tint</item>
-        <item name="colorOnPrimaryContainer">@color/teal</item>
+        <item name="colorPrimaryContainer">@color/terracotta_tint</item>
+        <item name="colorOnPrimaryContainer">@color/terracotta</item>
         <item name="colorSecondary">@color/teal</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/teal_tint</item>
+        <item name="colorOnSecondaryContainer">@color/teal</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorOnSurface">@color/ink</item>
         <item name="colorSurfaceVariant">@color/canvas</item>
@@ -18,9 +20,39 @@
         <item name="android:statusBarColor">@color/canvas</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="Theme.Eclipse" parent="Base.Theme.Eclipse" />
+
+    <style name="Theme.Eclipse.FloRose" parent="Theme.Eclipse">
+        <item name="colorPrimary">@color/palette_flo_primary</item>
+        <item name="colorPrimaryContainer">@color/palette_flo_tint</item>
+        <item name="colorSecondary">@color/palette_flo_secondary</item>
+    </style>
+
+    <style name="Theme.Eclipse.Lavender" parent="Theme.Eclipse">
+        <item name="colorPrimary">@color/palette_lavender_primary</item>
+        <item name="colorPrimaryContainer">@color/palette_lavender_tint</item>
+        <item name="colorSecondary">@color/palette_lavender_secondary</item>
+    </style>
+
+    <style name="Theme.Eclipse.Sage" parent="Theme.Eclipse">
+        <item name="colorPrimary">@color/palette_sage_primary</item>
+        <item name="colorPrimaryContainer">@color/palette_sage_tint</item>
+        <item name="colorSecondary">@color/palette_sage_secondary</item>
+    </style>
+
+    <style name="Theme.Eclipse.Midnight" parent="Theme.Eclipse">
+        <item name="colorPrimary">@color/palette_midnight_primary</item>
+        <item name="colorPrimaryContainer">@color/palette_midnight_tint</item>
+        <item name="colorSecondary">@color/palette_midnight_secondary</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Eclipse.Fab" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/fab_radius</item>
+    </style>
 
     <style name="Widget.Eclipse.Chip" parent="Widget.Material3.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_bg</item>
@@ -30,5 +62,23 @@
         <item name="chipCornerRadius">100dp</item>
         <item name="android:checkable">true</item>
         <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+        <item name="enableEdgeToEdge">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Eclipse.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearance.Eclipse.BottomSheet" parent="">
+        <item name="cornerSizeTopLeft">28dp</item>
+        <item name="cornerSizeTopRight">28dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 </resources>

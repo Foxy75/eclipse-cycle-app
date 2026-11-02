@@ -53,7 +53,11 @@ class Repository private constructor(context: Context) {
 
     fun cycles(): List<Cycle> = CycleBuilder.build(state.flowDays())
 
-    fun prediction(): Prediction = CyclePredictor.predict(state.flowDays())
+    fun prediction(): Prediction = CyclePredictor.predict(
+        flowDays = state.flowDays(),
+        baselineCycleLength = state.baselineCycleLength,
+        baselinePeriodLength = state.baselinePeriodLength
+    )
 
     fun addListener(l: (AppState) -> Unit) { listeners.add(l) }
 
@@ -67,8 +71,12 @@ class Repository private constructor(context: Context) {
         update { s ->
             val m = s.days.toMutableMap()
             if (cleaned == null) m.remove(date) else m[date] = cleaned
-            AppState(m)
+            s.copy(days = m)
         }
+    }
+
+    fun setBaseline(cycleLength: Int, periodLength: Int) {
+        update { it.copy(baselineCycleLength = cycleLength, baselinePeriodLength = periodLength) }
     }
 
     fun update(tx: (AppState) -> AppState) {

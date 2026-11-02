@@ -13,10 +13,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import io.github.foxy75.eclipse.MainActivity
 import io.github.foxy75.eclipse.R
+import io.github.foxy75.eclipse.data.PersonalizePreferences
 import io.github.foxy75.eclipse.data.Repository
 import io.github.foxy75.eclipse.databinding.FragmentSettingsBinding
 import io.github.foxy75.eclipse.ui.common.Press
@@ -59,7 +63,12 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val repo = Repository.get(requireContext())
-        Press.attach(binding.btnExport, binding.btnImport, binding.btnLockNow)
+        applyWindowInsets()
+        Press.attach(binding.btnBack, binding.btnExport, binding.btnImport, binding.btnLockNow)
+
+        binding.btnBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
         binding.secureSwitch.isChecked = repo.secureFlag()
         binding.secureSwitch.setOnCheckedChangeListener { _, checked ->
@@ -67,6 +76,7 @@ class SettingsFragment : Fragment() {
             (activity as? MainActivity)?.applySecureFlag()
         }
 
+        setupThemeMode()
         setupLanguage()
         binding.langGroup.setOnCheckedStateChangeListener { _, checkedIds ->
             if (checkedIds.isNotEmpty()) applyLanguage(checkedIds.first())
@@ -82,6 +92,46 @@ class SettingsFragment : Fragment() {
             "1.0"
         }
         binding.tvVersion.text = getString(R.string.set_version, versionName)
+    }
+
+    private fun applyWindowInsets() {
+        val basePadding = resources.getDimensionPixelSize(R.dimen.space_16)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val statusBar = insets.getInsets(
+                WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            val navBar = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+
+            binding.settingsContent.updatePadding(
+                top = basePadding + statusBar.top,
+                bottom = basePadding + navBar.bottom
+            )
+            insets
+        }
+        ViewCompat.requestApplyInsets(binding.root)
+    }
+
+    private fun setupThemeMode() {
+        val currentMode = PersonalizePreferences.getNightMode(requireContext())
+        when (currentMode) {
+            PersonalizePreferences.MODE_LIGHT -> binding.chipThemeLight.isChecked = true
+            PersonalizePreferences.MODE_DARK -> binding.chipThemeDark.isChecked = true
+            else -> binding.chipThemeSystem.isChecked = true
+        }
+
+        binding.themeModeGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+            if (checkedIds.isEmpty()) return@setOnCheckedStateChangeListener
+            val newMode = when (checkedIds.first()) {
+                R.id.chipThemeLight -> PersonalizePreferences.MODE_LIGHT
+                R.id.chipThemeDark -> PersonalizePreferences.MODE_DARK
+                else -> PersonalizePreferences.MODE_SYSTEM
+            }
+            if (newMode != currentMode) {
+                PersonalizePreferences.setNightMode(requireContext(), newMode)
+                PersonalizePreferences.applyNightMode(requireContext())
+                requireActivity().recreate()
+            }
+        }
     }
 
     private fun setupLanguage() {

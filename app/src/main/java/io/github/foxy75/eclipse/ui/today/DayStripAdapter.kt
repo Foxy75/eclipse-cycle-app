@@ -1,7 +1,9 @@
 package io.github.foxy75.eclipse.ui.today
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.github.foxy75.eclipse.R
 import io.github.foxy75.eclipse.core.Dates
@@ -28,27 +30,33 @@ class DayStripAdapter(
         val weekdays = ctx.resources.getStringArray(R.array.weekdays_short)
 
         holder.binding.dayLetter.text = weekdays[Dates.weekday(day) - 1]
-        holder.binding.dayNum.text = Dates.dayOfMonth(day).toString()
+        val dayNumber = Dates.dayOfMonth(day).toString()
+        holder.binding.dayNum.text = dayNumber
 
         val selected = day == selectedDay
-        holder.binding.dayNum.setTextColor(ctx.resources.getColor(
-            if (selected) R.color.white else R.color.ink, null
-        ))
-        holder.binding.dayNum.setBackgroundResource(
-            if (selected) R.drawable.bg_pill_active else R.color.transparent
-        )
+        if (selected) {
+            holder.binding.root.setBackgroundResource(R.drawable.bg_day_item_selected)
+            holder.binding.dayLetter.setTextColor(ContextCompat.getColor(ctx, R.color.white))
+            holder.binding.dayNum.setTextColor(ContextCompat.getColor(ctx, R.color.white))
+            holder.binding.dayNum.background = null
+        } else {
+            holder.binding.root.setBackgroundResource(R.drawable.bg_day_item)
+            holder.binding.dayLetter.setTextColor(ContextCompat.getColor(ctx, R.color.ink_secondary))
+            holder.binding.dayNum.setTextColor(ContextCompat.getColor(ctx, R.color.ink))
+            holder.binding.dayNum.background = null
+        }
 
         val dot = holder.binding.dot
         when {
             day in factDays -> {
-                dot.visibility = android.view.View.VISIBLE
-                dot.setBackgroundResource(R.drawable.bg_dot_terracotta)
+                dot.visibility = View.VISIBLE
+                dot.setBackgroundResource(if (selected) R.drawable.bg_dot_white else R.drawable.bg_dot_terracotta)
             }
             day in predictedDays -> {
-                dot.visibility = android.view.View.VISIBLE
-                dot.setBackgroundResource(R.drawable.bg_dot_teal)
+                dot.visibility = View.VISIBLE
+                dot.setBackgroundResource(if (selected) R.drawable.bg_dot_white else R.drawable.bg_dot_teal)
             }
-            else -> dot.visibility = android.view.View.INVISIBLE
+            else -> dot.visibility = View.INVISIBLE
         }
 
         holder.binding.root.setOnClickListener { onSelect(day) }

@@ -1,65 +1,424 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lockRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/canvas"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="@dimen/space_24">
-
-    <ImageView
-        android:id="@+id/ivLock"
-        android:layout_width="@dimen/icon_button"
-        android:layout_height="@dimen/icon_button"
-        android:layout_marginTop="@dimen/space_24"
-        android:contentDescription="@string/lock_title"
-        android:padding="12dp"
-        android:src="@drawable/ic_lock"
-        app:tint="@color/ink_secondary" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_16"
-        android:gravity="center"
-        android:text="@string/lock_title"
-        android:textAppearance="@style/TextAppearance.Eclipse.Title" />
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_8"
-        android:gravity="center"
-        android:text="@string/lock_subtitle"
-        android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+    android:paddingHorizontal="@dimen/space_24"
+    android:paddingTop="@dimen/space_24"
+    android:paddingBottom="@dimen/space_24">
 
     <LinearLayout
-        android:id="@+id/pinDots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_24"
         android:gravity="center"
-        android:orientation="horizontal" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/pinInput"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:background="@null"
-        android:cursorVisible="false"
-        android:importantForAutofill="no"
-        android:inputType="numberPassword"
-        android:maxLength="6"
-        android:visibility="invisible" />
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_eclipse_mark" />
 
-    <TextView
-        android:id="@+id/msg"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:letterSpacing="0.16"
+            android:text="@string/lock_brand"
+            android:textColor="@color/ink"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_16"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.Eclipse.Label"
-        android:visibility="gone" />
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/containerPinNormal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lock_title"
+                android:textAppearance="@style/TextAppearance.Eclipse.ScreenTitle" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_6"
+                android:gravity="center"
+                android:text="@string/lock_subtitle"
+                android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+            <LinearLayout
+                android:id="@+id/pinDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:gravity="center"
+                android:textColor="@color/terracotta"
+                android:textAppearance="@style/TextAppearance.Eclipse.BodySm"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/space_16" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnPin1"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/btnPin2"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/btnPin3"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/numpad_gap_v"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnPin4"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/btnPin5"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/btnPin6"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="6"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/numpad_gap_v"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnPin7"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="7"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/btnPin8"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/btnPin9"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="9"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/numpad_gap_v"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/btnPin0"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/ink"
+                        android:textSize="22sp" />
+
+                    <ImageView
+                        android:id="@+id/btnPinBackspace"
+                        android:layout_width="@dimen/numpad_key"
+                        android:layout_height="@dimen/numpad_key"
+                        android:layout_marginHorizontal="@dimen/space_12"
+                        android:background="@drawable/bg_numpad_key"
+                        android:clickable="true"
+                        android:contentDescription="@string/a11y_backspace"
+                        android:focusable="true"
+                        android:padding="@dimen/space_20"
+                        android:src="@drawable/ic_backspace_outline"
+                        app:tint="@color/ink_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/space_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lock_footer"
+                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerPinLocked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_lock_circle">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/terracotta" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_18"
+                android:gravity="center"
+                android:text="@string/lock_locked_title"
+                android:textColor="@color/terracotta"
+                android:textAppearance="@style/TextAppearance.Eclipse.ScreenTitle" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:gravity="center"
+                android:text="@string/lock_locked_desc"
+                android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:background="@drawable/bg_card_20"
+                android:orientation="vertical"
+                android:padding="@dimen/space_18">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lock_countdown_kicker"
+                        android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+
+                    <View
+                        android:layout_width="@dimen/dot_8"
+                        android:layout_height="@dimen/dot_8"
+                        android:background="@drawable/bg_dot_terracotta" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvLockoutCountdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/bg_field"
+                    android:padding="@dimen/space_16"
+                    android:textAppearance="@style/TextAppearance.Eclipse.MetricValueMd"
+                    android:textColor="@color/terracotta" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:gravity="center"
+                    android:text="@string/lock_countdown_hint"
+                    android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:background="@drawable/bg_banner"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/space_16"
+                android:paddingVertical="@dimen/space_14">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_sm"
+                    android:layout_height="@dimen/icon_sm"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_shield_outline"
+                    app:tint="@color/ink_secondary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_10"
+                    android:layout_weight="1"
+                    android:text="@string/lock_shield"
+                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/space_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lock_footer_locked"
+                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

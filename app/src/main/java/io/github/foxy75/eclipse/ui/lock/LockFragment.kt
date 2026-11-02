@@ -3,22 +3,27 @@ package io.github.foxy75.eclipse.ui.lock
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import io.github.foxy75.eclipse.MainActivity
 import io.github.foxy75.eclipse.R
 import io.github.foxy75.eclipse.data.Repository
 import io.github.foxy75.eclipse.databinding.FragmentLockBinding
 import io.github.foxy75.eclipse.ui.common.PinDots
+import io.github.foxy75.eclipse.ui.common.Press
 
 class LockFragment : Fragment() {
 
     private var _binding: FragmentLockBinding? = null
     private val binding get() = _binding!!
+
+    private val pin = StringBuilder()
+    private var dots: List<View> = emptyList()
 
     private val handler = Handler(Looper.getMainLooper())
     private val tick = object : Runnable {
@@ -26,8 +31,8 @@ class LockFragment : Fragment() {
             val lock = Repository.get(requireContext()).pin
             val remaining = lock.remainingLockedMillis()
             if (remaining > 0L) {
-                binding.msg.text = getString(
-                    R.string.lock_locked_body, formatDuration(remaining)
+                binding.tvLockoutCountdown.text = getString(
+                    R.string.lock_locked_value, formatDuration(remaining)
                 )
                 handler.postDelayed(this, 1000L)
             } else {
@@ -44,17 +49,20 @@ class LockFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        PinDots.build(binding.pinDots)
+        applyWindowInsets()
+        dots = PinDots.build(binding.pinDots)
 
-        binding.pinInput.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
-            override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                val text = s?.toString().orEmpty()
-                renderDots(text.length)
-                if (text.length == 6) submit(text)
-            }
-        })
+        val keys: List<View> = listOf(
+            binding.btnPin0, binding.btnPin1, binding.btnPin2,
+            binding.btnPin3, binding.btnPin4, binding.btnPin5,
+            binding.btnPin6, binding.btnPin7, binding.btnPin8, binding.btnPin9
+        )
+        Press.attach(*(keys + binding.btnPinBackspace).toTypedArray())
+
+        keys.forEachIndexed { digit, key ->
+            key.setOnClickListener { onDigit(digit) }
+        }
+        binding.btnPinBackspace.setOnClickListener { onBackspace() }
 
         if (Repository.get(requireContext()).pin.remainingLockedMillis() > 0L) {
             showLocked()
@@ -63,14 +71,42 @@ class LockFragment : Fragment() {
         }
     }
 
-    private fun renderDots(filled: Int) {
-        val dots = binding.pinDots
-        val children = (0 until dots.childCount).map { dots.getChildAt(it) }
-        PinDots.render(children, filled)
+    private fun applyWindowInsets() {
+        val basePaddingTop = resources.getDimensionPixelSize(R.dimen.space_24)
+        val basePaddingBottom = resources.getDimensionPixelSize(R.dimen.space_24)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val statusBar = insets.getInsets(
+                WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            val navBar = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+
+            binding.lockRoot.updatePadding(
+                top = basePaddingTop + statusBar.top,
+                bottom = basePaddingBottom + navBar.bottom
+            )
+            insets
+        }
+        ViewCompat.requestApplyInsets(binding.root)
     }
 
-    private fun submit(pin: String) {
-        val check = Repository.get(requireContext()).pin.check(pin)
+    private fun onDigit(digit: Int) {
+        if (pin.length >= 6) return
+        pin.append(digit)
+        PinDots.render(dots, pin.length)
+        binding.msg.visibility = View.GONE
+        if (pin.length == 6) submit(pin.toString())
+    }
+
+    private fun onBackspace() {
+        if (pin.isEmpty()) return
+        pin.deleteCharAt(pin.length - 1)
+        PinDots.render(dots, pin.length)
+        binding.msg.visibility = View.GONE
+    }
+
+    private fun submit(entered: String) {
+        val check = Repository.get(requireContext()).pin.check(entered)
         when {
             check.unlocked -> {
                 handler.removeCallbacks(tick)
@@ -80,29 +116,25 @@ class LockFragment : Fragment() {
             else -> {
                 binding.msg.visibility = View.VISIBLE
                 binding.msg.text = getString(R.string.lock_wrong, check.attemptsLeft)
-                binding.pinInput.text?.clear()
+                pin.clear()
+                PinDots.render(dots, 0)
             }
         }
     }
 
     private fun showEntry() {
         handler.removeCallbacks(tick)
-        binding.tvTitle.setText(R.string.lock_title)
-        binding.tvSubtitle.visibility = View.VISIBLE
-        binding.tvSubtitle.setText(R.string.lock_subtitle)
-        binding.pinDots.visibility = View.VISIBLE
-        binding.pinInput.visibility = View.INVISIBLE
+        binding.containerPinLocked.visibility = View.GONE
+        binding.containerPinNormal.visibility = View.VISIBLE
+        pin.clear()
+        PinDots.render(dots, 0)
         binding.msg.visibility = View.GONE
-        binding.pinInput.requestFocus()
     }
 
     private fun showLocked() {
         handler.removeCallbacks(tick)
-        binding.tvTitle.setText(R.string.lock_locked_title)
-        binding.tvSubtitle.visibility = View.GONE
-        binding.pinDots.visibility = View.GONE
-        binding.pinInput.visibility = View.GONE
-        binding.msg.visibility = View.VISIBLE
+        binding.containerPinNormal.visibility = View.GONE
+        binding.containerPinLocked.visibility = View.VISIBLE
         tick.run()
     }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="canvas">#171513</color>
+    <color name="surface">#201D19</color>
+    <color name="surface_warm">#251F1B</color>
+    <color name="border">#312C27</color>
+    <color name="border_muted">#423B34</color>
+    <color name="ink">#ECE7E1</color>
+    <color name="ink_secondary">#A79E95</color>
+    <color name="terracotta">#DE6B4F</color>
+    <color name="terracotta_dark">#C84B31</color>
+    <color name="terracotta_tint">#37221C</color>
+    <color name="terracotta_tint_border">#532F25</color>
+    <color name="pred_cell_bg">#2B201B</color>
+    <color name="teal">#33B2A2</color>
+    <color name="teal_tint">#1A2C29</color>
+
+    <!-- Dark Mode Aesthetic Palettes -->
+    <color name="palette_terracotta_primary">#DE6B4F</color>
+    <color name="palette_terracotta_dark">#C84B31</color>
+    <color name="palette_terracotta_secondary">#33B2A2</color>
+    <color name="palette_terracotta_tint">#37221C</color>
+
+    <color name="palette_flo_primary">#E2738E</color>
+    <color name="palette_flo_dark">#D45D79</color>
+    <color name="palette_flo_secondary">#F2A895</color>
+    <color name="palette_flo_tint">#3D1E26</color>
+
+    <color name="palette_lavender_primary">#9B86CA</color>
+    <color name="palette_lavender_dark">#7E69AB</color>
+    <color name="palette_lavender_secondary">#78A9D1</color>
+    <color name="palette_lavender_tint">#282036</color>
+
+    <color name="palette_sage_primary">#6CA278</color>
+    <color name="palette_sage_dark">#4E7A58</color>
+    <color name="palette_sage_secondary">#ABC092</color>
+    <color name="palette_sage_tint">#1B291F</color>
+
+    <color name="palette_midnight_primary">#7B84B5</color>
+    <color name="palette_midnight_dark">#575F8A</color>
+    <color name="palette_midnight_secondary">#E0BF73</color>
+    <color name="palette_midnight_tint">#1E2235</color>
+</resources>

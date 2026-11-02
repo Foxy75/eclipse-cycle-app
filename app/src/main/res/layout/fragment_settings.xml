@@ -6,16 +6,37 @@
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/settingsContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/space_16">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/set_title"
-            android:textAppearance="@style/TextAppearance.Eclipse.Title" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/space_16">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/icon_button"
+                android:layout_height="@dimen/icon_button"
+                android:background="@drawable/bg_icon_button"
+                android:contentDescription="@string/close"
+                android:padding="12dp"
+                android:src="@drawable/ic_chevron_left"
+                app:tint="@color/ink" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/space_12"
+                android:text="@string/set_title"
+                android:textAppearance="@style/TextAppearance.Eclipse.Title" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,9 +72,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_16"
-                app:thumbTint="@color/terracotta"
+                app:thumbTint="?attr/colorPrimary"
                 app:trackTint="@color/border" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:text="@string/set_display"
+            android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/themeModeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:chipSpacingHorizontal="@dimen/space_8"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipThemeLight"
+                style="@style/Widget.Eclipse.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/theme_mode_light" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipThemeDark"
+                style="@style/Widget.Eclipse.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/theme_mode_dark" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipThemeSystem"
+                style="@style/Widget.Eclipse.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/theme_mode_system" />
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:layout_width="match_parent"

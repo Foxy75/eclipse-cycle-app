@@ -1,169 +1,559 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/canvas"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/space_24"
-        android:paddingTop="@dimen/space_24"
-        android:paddingBottom="@dimen/space_24">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/step1"
+            android:id="@+id/onboardingContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/bg_dot_terracotta"
-                android:contentDescription="@string/app_name"
-                android:padding="@dimen/space_16"
-                android:src="@drawable/ic_drop"
-                app:tint="@color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:gravity="center"
-                android:text="@string/onb_step1_title"
-                android:textAppearance="@style/TextAppearance.Eclipse.Title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                android:gravity="center"
-                android:text="@string/onb_step1_body"
-                android:textAppearance="@style/TextAppearance.Eclipse.Body" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16"
-                android:background="@drawable/bg_signal_tag"
-                android:gravity="center"
-                android:padding="@dimen/space_12"
-                android:text="@string/onb_step1_privacy"
-                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:layout_marginBottom="@dimen/space_8"
-                android:text="@string/onb_disclaimer_title"
-                android:textAllCaps="true"
-                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/onb_disclaimer"
-                android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:minHeight="@dimen/space_24" />
-
-            <TextView
-                android:id="@+id/btnContinue"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/cta_height"
-                android:background="@drawable/bg_cta"
-                android:gravity="center"
-                android:text="@string/onb_continue"
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/step2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/onb_step2_title"
-                android:textAppearance="@style/TextAppearance.Eclipse.Title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                android:gravity="center"
-                android:text="@string/onb_step2_body"
-                android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+            android:paddingHorizontal="@dimen/space_16"
+            android:paddingTop="@dimen/space_8"
+            android:paddingBottom="@dimen/space_24">
 
             <LinearLayout
-                android:id="@+id/pinDots"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:gravity="center"
-                android:orientation="horizontal" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/pinInput"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                android:background="@null"
-                android:cursorVisible="false"
-                android:importantForAutofill="no"
-                android:inputType="numberPassword"
-                android:maxLength="6"
-                android:visibility="invisible" />
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/icon_button"
+                    android:layout_height="@dimen/icon_button"
+                    android:background="@drawable/bg_icon_button"
+                    android:contentDescription="@string/a11y_back"
+                    android:padding="@dimen/space_10"
+                    android:src="@drawable/ic_chevron_left"
+                    android:visibility="gone"
+                    app:tint="@color/ink" />
 
-            <TextView
-                android:id="@+id/pinHintLabel"
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_eclipse_mark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.Eclipse.CardTitle" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/btnSkip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/touch_target"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/space_8"
+                    android:text="@string/onb_skip"
+                    android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
-                android:gravity="center"
-                android:text="@string/onb_pin_enter"
-                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+                android:max="100"
+                app:indicatorColor="@color/terracotta"
+                app:trackColor="@color/border"
+                app:trackCornerRadius="2dp"
+                app:trackThickness="3dp" />
 
-            <TextView
-                android:id="@+id/pinError"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
-                android:gravity="center"
-                android:textColor="@color/terracotta"
-                android:textAppearance="@style/TextAppearance.Eclipse.Caption"
-                android:visibility="gone" />
+                android:layout_marginTop="@dimen/space_24">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:minHeight="@dimen/space_24" />
+                <LinearLayout
+                    android:id="@+id/step1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/btnFinish"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/cta_height"
-                android:background="@drawable/bg_cta"
-                android:gravity="center"
-                android:text="@string/onb_continue"
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onb_step1_kicker"
+                        android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_6"
+                        android:text="@string/onb_welcome"
+                        android:textAppearance="@style/TextAppearance.Eclipse.OnboardingTitle" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8"
+                        android:text="@string/onb_welcome_sub"
+                        android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_24"
+                        android:background="@drawable/bg_card_20"
+                        android:orientation="vertical"
+                        android:padding="@dimen/space_20">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/onb_last_period"
+                            android:textAppearance="@style/TextAppearance.Eclipse.CardTitle" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:text="@string/onb_last_period_sub"
+                            android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+
+                        <LinearLayout
+                            android:id="@+id/dateField"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="@dimen/space_16"
+                            android:background="@drawable/bg_field"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/space_14">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_sm"
+                                android:layout_height="@dimen/icon_sm"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_calendar_outline"
+                                app:tint="@color/terracotta" />
+
+                            <TextView
+                                android:id="@+id/tvSelectedStartDate"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space_10"
+                                android:layout_weight="1"
+                                android:textAppearance="@style/TextAppearance.Eclipse.Date" />
+
+                            <TextView
+                                android:id="@+id/tvRelativeDateBadge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_chip_canvas"
+                                android:paddingHorizontal="@dimen/space_10"
+                                android:paddingVertical="@dimen/space_4"
+                                android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_14"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/space_8"
+                                android:text="@string/onb_or"
+                                android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+
+                            <TextView
+                                android:id="@+id/chipQuickToday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="34dp"
+                                android:background="@drawable/bg_chip_pill"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/space_14"
+                                android:text="@string/onb_chip_today"
+                                android:textAppearance="@style/TextAppearance.Eclipse.ChipLabel" />
+
+                            <TextView
+                                android:id="@+id/chipQuickYesterday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="@dimen/space_8"
+                                android:background="@drawable/bg_chip_pill"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/space_14"
+                                android:text="@string/onb_chip_yesterday"
+                                android:textAppearance="@style/TextAppearance.Eclipse.ChipLabel" />
+
+                            <TextView
+                                android:id="@+id/chipQuickForgot"
+                                android:layout_width="wrap_content"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="@dimen/space_8"
+                                android:background="@drawable/bg_chip_pill"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/space_14"
+                                android:text="@string/onb_chip_not_sure"
+                                android:textAppearance="@style/TextAppearance.Eclipse.ChipLabel"
+                                android:textColor="@color/ink_secondary" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_12"
+                        android:background="@drawable/bg_banner"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/space_16"
+                        android:paddingVertical="@dimen/space_14">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_sm"
+                            android:layout_height="@dimen/icon_sm"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_shield_outline"
+                            app:tint="@color/ink_secondary" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:text="@string/onb_privacy_banner"
+                            android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/step2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onb_step2_kicker"
+                        android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_6"
+                        android:text="@string/onb_baseline_title"
+                        android:textAppearance="@style/TextAppearance.Eclipse.OnboardingTitle" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8"
+                        android:text="@string/onb_baseline_sub"
+                        android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_24"
+                        android:background="@drawable/bg_card_20"
+                        android:orientation="vertical"
+                        android:padding="@dimen/space_18">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/onb_cycle_length"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.CardTitle" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/space_2"
+                                    android:text="@string/onb_cycle_sub"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvCycleBadge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_chip_canvas"
+                                android:paddingHorizontal="@dimen/space_8"
+                                android:paddingVertical="@dimen/space_4"
+                                android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="@dimen/space_14"
+                            android:background="@drawable/bg_field"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/space_6">
+
+                            <TextView
+                                android:id="@+id/btnCycleLengthMinus"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_button"
+                                android:contentDescription="@string/a11y_decrease"
+                                android:gravity="center"
+                                android:text="−"
+                                android:textSize="20sp"
+                                android:textColor="@color/ink" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvCycleLengthValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.MetricValue" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/space_4"
+                                    android:text="@string/onb_unit_days"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/btnCycleLengthPlus"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_button"
+                                android:contentDescription="@string/a11y_increase"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textSize="20sp"
+                                android:textColor="@color/ink" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_12"
+                        android:background="@drawable/bg_card_20"
+                        android:orientation="vertical"
+                        android:padding="@dimen/space_18">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/onb_period_length"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.CardTitle" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/space_2"
+                                    android:text="@string/onb_period_sub"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvPeriodBadge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_chip_canvas"
+                                android:paddingHorizontal="@dimen/space_8"
+                                android:paddingVertical="@dimen/space_4"
+                                android:textAppearance="@style/TextAppearance.Eclipse.KickerMono" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="@dimen/space_14"
+                            android:background="@drawable/bg_field"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/space_6">
+
+                            <TextView
+                                android:id="@+id/btnPeriodDurationMinus"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_button"
+                                android:contentDescription="@string/a11y_decrease"
+                                android:gravity="center"
+                                android:text="−"
+                                android:textSize="20sp"
+                                android:textColor="@color/ink" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvPeriodDurationValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.MetricValue" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/space_4"
+                                    android:text="@string/onb_unit_days"
+                                    android:textAppearance="@style/TextAppearance.Eclipse.BodySm" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/btnPeriodDurationPlus"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_button"
+                                android:contentDescription="@string/a11y_increase"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textSize="20sp"
+                                android:textColor="@color/ink" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_16"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_sm"
+                            android:layout_height="@dimen/icon_sm"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_info_circle"
+                            app:tint="@color/ink_secondary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_6"
+                            android:text="@string/onb_disclaimer"
+                            android:textAppearance="@style/TextAppearance.Eclipse.Caption" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/step3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lock_new_title"
+                        android:textAppearance="@style/TextAppearance.Eclipse.OnboardingTitle" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8"
+                        android:text="@string/lock_subtitle"
+                        android:textAppearance="@style/TextAppearance.Eclipse.Body" />
+
+                    <EditText
+                        android:id="@+id/pinInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_24"
+                        android:background="@drawable/bg_field"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:importantForAutofill="no"
+                        android:inputType="numberPassword"
+                        android:letterSpacing="0.3"
+                        android:maxLength="6"
+                        android:padding="@dimen/space_16"
+                        android:textColor="@color/ink"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/pinHintLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_16"
+                        android:gravity="center"
+                        android:text="@string/lock_new_title"
+                        android:textAppearance="@style/TextAppearance.Eclipse.Label" />
+
+                    <TextView
+                        android:id="@+id/pinError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8"
+                        android:gravity="center"
+                        android:textColor="@color/terracotta"
+                        android:textAppearance="@style/TextAppearance.Eclipse.Caption"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/btnCta"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cta_height"
+        android:layout_marginHorizontal="@dimen/space_16"
+        android:layout_marginBottom="@dimen/space_16"
+        android:background="@drawable/bg_cta"
+        android:gravity="center"
+        android:text="@string/onb_continue"
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.Eclipse.Button" />
+</LinearLayout>

@@ -8,12 +8,12 @@ object Symptoms {
     const val COUNT = 8
     const val CRAMPS = 0
     const val HEADACHE = 1
-    const val NAUSEA = 2
+    const val BACKACHE = 2
     const val BLOATING = 3
-    const val BACKACHE = 4
-    const val BREAST_TENDERNESS = 5
-    const val FATIGUE = 6
-    const val ACNE = 7
+    const val FATIGUE = 4
+    const val ACNE = 5
+    const val NAUSEA = 6
+    const val CRAVING = 7
 }
 
 object Moods {
@@ -27,6 +27,7 @@ object Moods {
 
 object Flow {
     const val MAX = 4
+    const val MEDIUM = 3
 }
 
 /** A single day's log. [flow] is 0..4; 0 means a logged day without flow. */
@@ -38,7 +39,11 @@ data class DayEntry(
 )
 
 /** All persisted cycle data. Keyed by epoch-day. */
-data class AppState(val days: Map<Long, DayEntry> = emptyMap()) {
+data class AppState(
+    val days: Map<Long, DayEntry> = emptyMap(),
+    val baselineCycleLength: Int? = null,
+    val baselinePeriodLength: Int? = null
+) {
 
     fun entry(date: Long): DayEntry? = days[date]
 
@@ -61,6 +66,8 @@ object Serialization {
             days.put(Dates.formatIso(date), entryToJson(entry))
         }
         root.put("days", days)
+        state.baselineCycleLength?.let { root.put("bc", it) }
+        state.baselinePeriodLength?.let { root.put("bp", it) }
         return root.toString()
     }
 
@@ -73,7 +80,13 @@ object Serialization {
             val iso = keys.next()
             days[Dates.parseIso(iso)] = entryFromJson(daysObj.getJSONObject(iso))
         }
-        return AppState(days)
+        val bc = if (root.has("bc")) root.optInt("bc") else null
+        val bp = if (root.has("bp")) root.optInt("bp") else null
+        return AppState(
+            days = days,
+            baselineCycleLength = bc,
+            baselinePeriodLength = bp
+        )
     }
 
     private fun entryToJson(entry: DayEntry): JSONObject {

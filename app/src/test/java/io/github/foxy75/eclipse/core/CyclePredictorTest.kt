@@ -2,7 +2,7 @@ package io.github.foxy75.eclipse.core
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNull
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -44,31 +44,89 @@ class CyclePredictorTest {
     }
 
     @Test
-    fun stable_prediction_uses_median() {
+    fun cold_start_uses_baseline_prior() {
+        val start = day("2025-01-01")
+        val days = fromStarts(listOf(start), 4)
+        val pred = CyclePredictor.predict(days, baselineCycleLength = 30, baselinePeriodLength = 4)
+
+        assertTrue(pred.usedBaseline)
+        assertEquals(start + 30, pred.nextStart)
+        assertEquals(30, pred.medianLength)
+        assertEquals(4, pred.avgPeriodLength)
+        assertNotNull(pred.ovulationDay)
+        assertNotNull(pred.fertileWindow)
+        assertEquals(pred.nextStart!! - 13L, pred.ovulationDay)
+        assertEquals(pred.ovulationDay!! - 5, pred.fertileWindow!!.start)
+        assertEquals(pred.ovulationDay, pred.fertileWindow!!.end)
+    }
+
+    @Test
+    fun stable_prediction_with_recency_weighting() {
         val days = fromStarts((0..6).map { day("2025-01-01") + 28L * it }, 5)
         val pred = CyclePredictor.predict(days)
+
         assertTrue(pred.stable)
         assertEquals(28, pred.medianLength)
         assertEquals(5, pred.avgPeriodLength)
         assertEquals(day("2025-01-01") + 28L * 7, pred.nextStart)
+        assertEquals(CycleRegularity.REGULAR, pred.regularity)
+        assertTrue(pred.confidencePercent >= 80)
     }
 
     @Test
-    fun unstable_when_mad_exceeds_threshold() {
+    fun dynamic_luteal_scaling() {
+        assertEquals(11L, CyclePredictor.estimateLutealPhase(23))
+        assertEquals(12L, CyclePredictor.estimateLutealPhase(26))
+        assertEquals(13L, CyclePredictor.estimateLutealPhase(28))
+        assertEquals(14L, CyclePredictor.estimateLutealPhase(33))
+        assertEquals(15L, CyclePredictor.estimateLutealPhase(38))
+    }
+
+    @Test
+    fun wilcox_fertile_window_and_phase_resolution() {
+        val starts = listOf(day("2025-01-01"), day("2025-01-29"))
+        val cycles = CycleBuilder.build(fromStarts(starts, 5))
+        val pred = CyclePredictor.predict(fromStarts(starts, 5), 28, 5)
+
+        val nextStart = pred.nextStart!!
+        val ovulation = pred.ovulationDay!!
+        val fertileStart = pred.fertileWindow!!.start
+
+        assertEquals(nextStart - 13L, ovulation)
+        assertEquals(ovulation - 5L, fertileStart)
+
+        // Test phase mapping
+        assertEquals(Phase.MENSTRUAL, Phases.phaseFor(day("2025-01-01"), cycles, pred))
+        assertEquals(Phase.MENSTRUAL, Phases.phaseFor(day("2025-01-29"), cycles, pred))
+        assertEquals(Phase.FERTILE, Phases.phaseFor(ovulation, cycles, pred))
+        assertEquals(Phase.FERTILE, Phases.phaseFor(fertileStart, cycles, pred))
+        assertEquals(Phase.LUTEAL, Phases.phaseFor(ovulation + 2, cycles, pred))
+    }
+
+    @Test
+    fun irregular_cycles_classified_correctly() {
         val base = day("2025-01-01")
-        val starts = listOf(base, base + 20, base + 65, base + 85, base + 130)
-        val pred = CyclePredictor.predict(fromStarts(starts, 4))
-        assertFalse(pred.stable)
-        assertNull(pred.nextStart)
-        assertTrue(pred.predictedPeriods.isEmpty())
+        val starts = listOf(base, base + 21, base + 48, base + 85, base + 110)
+        val pred = CyclePredictor.predict(fromStarts(starts, 4), baselineCycleLength = 28)
+
+        assertEquals(CycleRegularity.IRREGULAR, pred.regularity)
+        assertNotNull(pred.nextStart)
+        assertNotNull(pred.earliestNextStart)
+        assertNotNull(pred.latestNextStart)
+        assertTrue(pred.latestNextStart!! > pred.earliestNextStart!!)
     }
 
     @Test
-    fun unstable_when_less_than_two_completed_cycles() {
-        val days = fromStarts(listOf(day("2025-01-01"), day("2025-01-29")), 4)
-        val pred = CyclePredictor.predict(days)
-        assertFalse(pred.stable)
-        assertNull(pred.nextStart)
+    fun missed_cycle_artifact_filtered_for_statistics_preserving_observed() {
+        val base = day("2025-01-01")
+        // User logged Jan 1, Jan 29 (28d), then missed Feb and logged Mar 26 (56d ~ 2x28)
+        val starts = listOf(base, base + 28, base + 84)
+        val pred = CyclePredictor.predict(fromStarts(starts, 4), baselineCycleLength = 28)
+
+        // Raw observed lengths preserved for truthful chart display
+        assertEquals(listOf(28, 56), pred.completedLengths)
+        // Statistical median handles the ~2x artifact cleanly
+        assertEquals(28, pred.medianLength)
     }
 
     @Test

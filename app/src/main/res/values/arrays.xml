@@ -9,22 +9,22 @@
     </string-array>
 
     <string-array name="symptom_labels">
-        <item>@string/symptom_cramps</item>
+        <item>@string/symptom_kram</item>
         <item>@string/symptom_headache</item>
-        <item>@string/symptom_nausea</item>
-        <item>@string/symptom_bloating</item>
         <item>@string/symptom_backache</item>
-        <item>@string/symptom_breast</item>
+        <item>@string/symptom_bloating</item>
         <item>@string/symptom_fatigue</item>
         <item>@string/symptom_acne</item>
+        <item>@string/symptom_nausea</item>
+        <item>@string/symptom_craving</item>
     </string-array>
 
     <string-array name="mood_labels">
-        <item>@string/mood_calm</item>
-        <item>@string/mood_happy</item>
+        <item>@string/mood_very_bad</item>
+        <item>@string/mood_bad</item>
         <item>@string/mood_neutral</item>
-        <item>@string/mood_anxious</item>
-        <item>@string/mood_irritable</item>
+        <item>@string/mood_good</item>
+        <item>@string/mood_very_good</item>
     </string-array>
 
     <string-array name="weekdays_short">
@@ -35,6 +35,16 @@
         <item>@string/wd_fri</item>
         <item>@string/wd_sat</item>
         <item>@string/wd_sun</item>
+    </string-array>
+
+    <string-array name="weekdays_full">
+        <item>@string/wdf_mon</item>
+        <item>@string/wdf_tue</item>
+        <item>@string/wdf_wed</item>
+        <item>@string/wdf_thu</item>
+        <item>@string/wdf_fri</item>
+        <item>@string/wdf_sat</item>
+        <item>@string/wdf_sun</item>
     </string-array>
 
     <string-array name="months">
